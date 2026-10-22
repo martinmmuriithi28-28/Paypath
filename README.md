@@ -64,7 +64,7 @@ This is an educational prototype. Loan records are stored locally in a JSON file
 
 Author
 
-Individual student project.
+Martin Muriithi
 
 Disclaimer
 
