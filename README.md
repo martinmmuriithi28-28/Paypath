@@ -13,7 +13,7 @@ Objectives
 - Track loan balances and repayment dates.
 - Summarize outstanding loans and repayments due during the current month.
 - Help users plan monthly loan repayments.
-- Estimate repayment affordability based on income and expenses
+- Estimate repayment affordability based on income and expenses.
 
 Features
 
