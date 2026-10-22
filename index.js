@@ -1,3 +1,15 @@
+// PayPath browser storage
+
+const STORAGE_KEY = "paypath_loans";
+
+function getLoansFromStorage() {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+}
+
+function saveLoansToStorage(loans) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(loans));
+}
+
 const API_URL = "/api/loans";
 
 // Store loans retrieved from the API.
@@ -216,15 +228,9 @@ function displayAllLoans() {
 
 // Load loans from the backend API.
 
-async function loadLoans() {
+function loadLoans() {
     try {
-        const response = await fetch(API_URL);
-
-        if (!response.ok) {
-            throw new Error("The API could not load your loans.");
-        }
-
-        loans = await response.json();
+        loans = getLoansFromStorage();
 
         updateDashboard();
         displayAllLoans();
@@ -232,7 +238,7 @@ async function loadLoans() {
         console.error(error);
 
         showMessage(
-            "Could not load loans. Check that the server is running.",
+            "Could not load loans from this browser.",
             "danger"
         );
     }
@@ -240,10 +246,11 @@ async function loadLoans() {
 
 // Send a new loan to the API.
 
-async function addLoan(event) {
+function addLoan(event) {
     event.preventDefault();
 
     const loan = {
+        id: Date.now().toString(),
         lender: getElement("lender").value.trim(),
         amount: Number(getElement("amount").value),
         dueAmount: Number(getElement("dueAmount").value),
@@ -263,69 +270,50 @@ async function addLoan(event) {
     }
 
     try {
-        const response = await fetch(API_URL, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(loan)
-        });
+        const loans = getLoansFromStorage();
 
-      const responseText = await response.text();
+        loans.push(loan);
 
-let result = {};
-
-try {
-    result = responseText ? JSON.parse(responseText) : {};
-} catch {
-    throw new Error(
-        "The server returned an invalid response. Check the server terminal."
-    );
-}
-
-if (!response.ok) {
-    throw new Error(result.error || "Could not save the loan.");
-}
-
-if (!result.id) {
-    throw new Error(
-        "The server did not confirm that the loan was saved."
-    );
-}
+        saveLoansToStorage(loans);
 
         getElement("loanForm").reset();
 
-        await loadLoans();
+        loadLoans();
         showView("loans");
         showMessage("Loan saved successfully!", "success");
     } catch (error) {
-        showMessage(error.message, "danger");
+        showMessage("Could not save the loan in this browser.", "danger");
+        console.error(error);
     }
 }
 
 // Delete a loan using its API ID.
 
-async function deleteLoan(id) {
+function deleteLoan(id) {
     if (!confirm("Are you sure you want to delete this loan?")) {
         return;
     }
 
     try {
-        const response = await fetch(
-            `${API_URL}/${encodeURIComponent(id)}`,
-            { method: "DELETE" }
+        const loans = getLoansFromStorage();
+
+        const updatedLoans = loans.filter(
+            loan => String(loan.id) !== String(id)
         );
 
-        const result = await response.json();
-
-        if (!response.ok) {
-            throw new Error(result.error || "Could not delete the loan.");
+        if (updatedLoans.length === loans.length) {
+            showMessage("Loan not found.", "warning");
+            return;
         }
 
-        await loadLoans();
+        saveLoansToStorage(updatedLoans);
+
+        loadLoans();
+
         showMessage("Loan deleted successfully.", "success");
     } catch (error) {
-        showMessage(error.message, "danger");
+        console.error(error);
+        showMessage("Could not delete the loan.", "danger");
     }
 }
 
