@@ -1,687 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <meta name="theme-color" content="#0b1728">
-<title>PayPath | Your money. Your way forward.</title>
-<link
-  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
-  rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>PayPath | Your money, your way</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+    rel="stylesheet">
+
+  <!-- Our own styles -->
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  
-  <div class="app-shell">
-    <!-- Main wrapper containing the sidebar and the main content area. -->
-
-    <aside class="sidebar" id="sidebar">
-      <!-- The aside element contains secondary navigation.
-           The id lets JavaScript find this sidebar. -->
-
-      <a class="brand" href="#" aria-label="PayPath home">
-        <!-- A link styled as the PayPath brand.
-             aria-label gives assistive technologies a descriptive name. -->
-
-        <span class="brand-mark">
-          <!-- Container for the small logo icon. -->
-
-          <svg viewBox="0 0 40 40" aria-hidden="true">
-            <!-- Inline SVG draws the logo using vector shapes.
-                 aria-hidden prevents decorative artwork being announced. -->
-
-            <path d="M8 28 C8 13 17 8 29 12 L24 7 M29 12 L22 16"
-              fill="none" stroke="currentColor" stroke-width="3"
-              stroke-linecap="round" stroke-linejoin="round"/>
-            <!-- Draws the curved path and arrow using an SVG path. -->
-
-            <circle cx="8" cy="28" r="3" fill="currentColor"/>
-            <!-- Draws a small circle at the beginning of the logo path. -->
-          </svg>
-        </span>
-
-        <span class="brand-name">
-          Pay<span>Path</span>
-          <!-- The nested span allows CSS to style "Path" differently. -->
-
-          <small>Your money. Your way forward.</small>
-          <!-- A smaller tagline below the product name. -->
-        </span>
-      </a>
-
-      <p class="nav-label">WORKSPACE</p>
-      <!-- Label for the sidebar navigation group. -->
-
-      <nav class="nav">
-        <!-- nav groups links and controls used to move around the app. -->
-
-        <button class="nav-link active" data-view="dashboard">
-          <span>▦</span> Dashboard
-        </button>
-        <!-- data-view="dashboard" identifies the view this button opens.
-             The active class marks Dashboard as selected initially. -->
-
-        <button class="nav-link" data-view="loans">
-          <span>▤</span> My loans
-        </button>
-        <!-- Button for opening the loans section. -->
-
-        <button class="nav-link" data-view="planner">
-          <span>◷</span> Payment planner
-        </button>
-        <!-- Button for opening the payment planner. -->
-
-        <button class="nav-link" data-view="affordability">
-          <span>⌁</span> Can I afford it?
-        </button>
-        <!-- Button for opening the affordability calculator. -->
-      </nav>
-
-      <div class="sidebar-bottom">
-        <!-- Groups the privacy note and settings button at the bottom. -->
-
-        <div class="privacy-note">
-          <span class="privacy-icon">✓</span>
-          <!-- Decorative privacy symbol. -->
-
-          <div>
-            <strong>Your money stays yours</strong>
-            <!-- Strong highlights the privacy note's main message. -->
-
-            <p>This demo stores records in this browser only.</p>
-            <!-- Explains where this prototype stores its records. -->
-          </div>
-        </div>
-
-        <button class="nav-link" data-view="settings">
-          <span>⚙</span> Settings
-        </button>
-        <!-- Opens the settings section. -->
-      </div>
-    </aside>
-
-    <!-- MAIN AREA: top header and the app's different screens. -->
-    <main class="main">
-
-      <header class="topbar">
-        <!-- Header containing the menu, page title and demo profile. -->
-
-        <button class="mobile-menu" id="mobileMenu"
-          aria-label="Open navigation">☰</button>
-        <!-- Mobile navigation button.
-             JavaScript can use the mobileMenu ID to open the sidebar. -->
-
-        <div>
-          <p class="eyebrow" id="todayLabel">
-            YOUR FINANCIAL OVERVIEW
-          </p>
-          <!-- Small descriptive heading. The ID allows JavaScript to update it. -->
-
-          <h1 id="pageTitle">Dashboard</h1>
-          <!-- Main heading; JavaScript can change it when screens change. -->
-        </div>
-
-        <div class="top-actions">
-          <span class="demo-pill"><span></span> CLASS DEMO</span>
-          <!-- Indicates this is a demonstration rather than a live banking app. -->
-
-          <button class="avatar" aria-label="Demo profile">M</button>
-          <!-- Placeholder profile button, not a real user account. -->
-        </div>
-      </header>
-
-      <!-- DASHBOARD SCREEN -->
-      <section class="view active" id="view-dashboard">
-        <!-- Each section with class="view" represents a screen.
-             JavaScript switches which view is active. -->
-
-        <div class="welcome-banner">
-          <!-- Promotional welcome panel at the top of the dashboard. -->
-
-          <div>
-            <p class="eyebrow light">YOUR MONEY. YOUR WAY FORWARD.</p>
-
-            <h2>Make every repayment<br>part of a better plan.</h2>
-            <!-- br creates a line break in the heading. -->
-
-            <p>See what you owe, what is due, and what you can do next.</p>
-
-            <button class="btn btn-lime" data-go="loans">
-              ＋ Add a loan <span>→</span>
-            </button>
-            <!-- data-go tells JavaScript which screen to open when clicked. -->
-          </div>
-
-          <div class="banner-art" aria-hidden="true">
-            <!-- Decorative artwork built using CSS rather than an image. -->
-
-            <div class="orbit orbit-one"></div>
-            <div class="orbit orbit-two"></div>
-
-            <div class="art-card">
-              <span class="art-dot"></span>
-              <div class="art-line long"></div>
-              <div class="art-line"></div>
-              <div class="art-progress"><i></i></div>
-
-              <div class="art-caption">
-                YOUR PATH FORWARD <b>↗</b>
-              </div>
-            </div>
-
-            <span class="art-spark spark-one">✦</span>
-            <span class="art-spark spark-two">✧</span>
-          </div>
-        </div>
-
-        <!-- SUMMARY CARDS -->
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">THE BIG PICTURE</p>
-            <h2>Your loan snapshot</h2>
-          </div>
-
-          <span class="muted small">Based on your saved records</span>
-        </div>
-
-        <div class="stat-grid">
-          <!-- Grid of four financial summary cards. -->
-
-          <article class="stat-card">
-            <!-- article represents one independent summary card. -->
-
-            <div class="stat-top">
-              <span>Total outstanding</span>
-              <span class="stat-icon purple">↗</span>
-            </div>
-
-            <strong id="totalOutstanding">KSh 0</strong>
-            <!-- JavaScript replaces this placeholder with the total loan balance. -->
-
-            <p class="stat-foot">
-              <span class="status-dot purple-dot"></span>
-              Across <b id="loanCount">0 loans</b>
-              <!-- JavaScript updates the number of recorded loans. -->
-            </p>
-          </article>
-
-          <article class="stat-card">
-            <div class="stat-top">
-              <span>Due this month</span>
-              <span class="stat-icon orange">◷</span>
-            </div>
-
-            <strong id="totalDue">KSh 0</strong>
-            <!-- Displays the combined planned monthly payments. -->
-
-            <p class="stat-foot">
-              <span class="status-dot orange-dot"></span>
-              Planned repayments
-            </p>
-          </article>
-
-          <article class="stat-card">
-            <div class="stat-top">
-              <span>Monthly income</span>
-              <span class="stat-icon green">↗</span>
-            </div>
-
-            <strong id="monthlyIncome">KSh 0</strong>
-            <!-- Displays the monthly income saved in Settings. -->
-
-            <p class="stat-foot">Used for affordability guidance</p>
-          </article>
-
-          <article class="stat-card">
-            <div class="stat-top">
-              <span>Repayment pressure</span>
-              <span class="stat-icon" id="pressureIcon">◎</span>
-            </div>
-
-            <strong id="pressureValue">0%</strong>
-            <!-- JavaScript calculates the percentage of income
-                 used for the monthly repayments. -->
-
-            <p class="stat-foot" id="pressureCaption">
-              Add income and loan details
-            </p>
-            <!-- JavaScript changes this message based on available data. -->
-          </article>
-        </div>
-
-        <!-- TWO-COLUMN DASHBOARD CONTENT -->
-        <div class="content-grid">
-
-          <article class="panel loans-panel">
-            <div class="panel-heading">
-              <div>
-                <p class="eyebrow">KEEP TRACK</p>
-                <h3>Your loans</h3>
-              </div>
-
-              <button class="text-button" data-go="loans">
-                View all →
-              </button>
-              <!-- Navigates to the complete loan list. -->
-            </div>
-
-            <div id="dashboardLoans" class="loan-list"></div>
-            <!-- JavaScript inserts a summary of saved loans into this container. -->
-
-            <div id="emptyDashboard" class="empty-state">
-              <!-- Shown when no loans have been saved yet. -->
-
-              <span class="empty-icon">↗</span>
-              <strong>Your plan starts here</strong>
-              <p>Add your first loan to see your repayment picture.</p>
-
-              <button class="btn btn-dark" data-go="loans">
-                Add your first loan
-              </button>
-            </div>
-          </article>
-
-          <article class="panel insight-panel">
-            <div class="panel-heading">
-              <div>
-                <p class="eyebrow">A CLEARER PATH</p>
-                <h3>Repayment health</h3>
-              </div>
-
-              <span class="tiny-badge">GUIDANCE</span>
-            </div>
-
-            <div class="health-meter">
-              <div class="meter-ring" id="meterRing">
-                <div>
-                  <strong id="meterPercent">0%</strong>
-                  <span>of income</span>
-                </div>
-              </div>
-            </div>
-            <!-- Circular indicator for repayment pressure. -->
-
-            <div class="health-copy">
-              <h4 id="healthTitle">Let's build your picture</h4>
-
-              <p id="healthText">
-                Add your monthly income and loans to understand how
-                repayments fit your budget.
-              </p>
-              <!-- JavaScript updates the guidance text. -->
-            </div>
-
-            <div class="insight-tip">
-              <span>✦</span>
-              <p>
-                <b>Small step, real progress</b><br>
-                Protect essentials like rent, food, transport and school
-                fees before planning extra repayments.
-              </p>
-            </div>
-          </article>
-        </div>
-
-        <p class="disclaimer">
-          PayPath is a planning demo, not a lender or a source of official
-          financial advice. Figures depend on the information you enter.
-        </p>
-      </section>
-
-      <!-- MY LOANS SCREEN -->
-      <section class="view" id="view-loans">
-        <!-- Hidden until JavaScript switches to the loans screen. -->
-
-        <div class="section-heading page-intro">
-          <div>
-            <p class="eyebrow">ALL IN ONE PLACE</p>
-            <h2>My loans</h2>
-            <p class="muted">
-              Keep your loan amounts, due dates and repayment plans organized.
-            </p>
-          </div>
-
-          <button class="btn btn-dark" id="openLoanForm">
-            ＋ Add loan
+  <!-- Main application -->
+  <div class="container-fluid">
+    <div class="row">
+
+      <!-- Sidebar navigation -->
+      <aside class="col-md-3 col-lg-2 sidebar p-4">
+        <h2>Pay<span>Path</span></h2>
+        <p>Your money. Your way forward.</p>
+
+        <nav class="nav flex-column">
+          <button class="nav-link active" data-view="dashboard">
+            Dashboard
           </button>
-          <!-- Opens the loan-entry form. -->
-        </div>
 
-        <!-- ADD LOAN FORM -->
-        <div class="panel form-panel" id="loanFormPanel" hidden>
-          <!-- hidden means the form starts invisible.
-               JavaScript removes hidden when the user clicks Add loan. -->
+          <button class="nav-link" data-view="loans">
+            My Loans
+          </button>
 
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">NEW RECORD</p>
-              <h3>Add a loan</h3>
-            </div>
+          <button class="nav-link" data-view="planner">
+            Payment Planner
+          </button>
 
-            <button class="icon-button" id="closeLoanForm"
-              aria-label="Close form">×</button>
-          </div>
+          <button class="nav-link" data-view="affordability">
+            Affordability Checker
+          </button>
 
-          <form id="loanForm" class="form-grid">
-            <!-- form collects loan information.
-                 JavaScript listens for the submit event to save the record. -->
+          <button class="nav-link" data-view="settings">
+            Settings
+          </button>
+        </nav>
+      </aside>
 
-            <label>
-              Lender or loan name
-              <input id="lender" name="lender"
-                placeholder="e.g. HELB, Sacco, friend"
-                required maxlength="60">
-            </label>
-            <!-- required prevents submission without a lender name.
-                 maxlength limits the length of the text. -->
+      <!-- Main dashboard -->
+      <main class="col-md-9 col-lg-10 p-4">
 
-            <label>
-              Loan type
-              <select id="loanType" name="loanType">
-                <!-- select creates a dropdown menu. -->
+        <header class="mb-4">
+          <p class="text-secondary">YOUR FINANCIAL OVERVIEW</p>
+          <h1 id="pageTitle">Dashboard</h1>
+        </header>
 
-                <option>Mobile loan</option>
-                <option>HELB / student loan</option>
-                <option>Sacco loan</option>
-                <option>Bank loan</option>
-                <option>Friend or family</option>
-                <option>Other</option>
-              </select>
-            </label>
+        <!-- Welcome section -->
+        <section class="welcome-banner p-4 rounded mb-4">
+          <h2>Make every repayment count.</h2>
+          <p>Track your loans and plan your repayments.</p>
 
-            <label>
-              Amount still owed (KSh)
-              <input id="amount" name="amount" type="number"
-                min="1" step="0.01" placeholder="e.g. 12000" required>
-            </label>
-            <!-- type="number" accepts numeric input.
-                 min="1" requires at least 1 and step permits decimals. -->
+          <button class="btn btn-lime" data-go="loans">
+            Add a Loan
+          </button>
+        </section>
 
-            <label>
-              Amount due this month (KSh)
-              <input id="dueAmount" name="dueAmount" type="number"
-                min="0" step="0.01" placeholder="e.g. 3000" required>
-            </label>
+        <!-- Financial summary -->
+        <section class="mb-4">
+          <h2 class="h4 mb-3">Your Loan Summary</h2>
 
-            <label>
-              Next due date
-              <input id="dueDate" name="dueDate" type="date" required>
-            </label>
-            <!-- The browser provides a date picker where supported. -->
+          <div class="row g-3">
 
-            <label>
-              Monthly interest or fee (%)
-              <input id="interest" name="interest" type="number"
-                min="0" max="100" step="0.01" value="0" required>
-
-              <small>Optional planning estimate; check your lender's actual terms.</small>
-            </label>
-            <!-- value="0" provides an initial value.
-                 This field is only a recorded estimate in the prototype. -->
-
-            <div class="form-actions">
-              <button type="button" class="btn btn-quiet" id="cancelLoan">
-                Cancel
-              </button>
-              <!-- type="button" prevents this button from submitting the form. -->
-
-              <button class="btn btn-lime" type="submit">
-                Save loan <span>→</span>
-              </button>
-              <!-- type="submit" triggers the form's submit event. -->
-            </div>
-          </form>
-        </div>
-
-        <!-- SAVED LOANS TABLE -->
-        <div class="panel">
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">YOUR RECORDS</p>
-
-              <h3>
-                Loan overview
-                <span class="count-badge" id="allLoanCount">0</span>
-              </h3>
-              <!-- Shows the number of loans saved. -->
-            </div>
-
-            <label class="search-box">
-              <span>⌕</span>
-
-              <input id="loanSearch" placeholder="Search loans..."
-                aria-label="Search loans">
-            </label>
-            <!-- JavaScript will use this input to filter the loan list. -->
-          </div>
-
-          <div id="allLoans" class="table-wrap"></div>
-          <!-- JavaScript generates the loan table inside this element. -->
-
-          <div id="emptyLoans" class="empty-state">
-            <span class="empty-icon">▤</span>
-            <strong>No loans recorded yet</strong>
-            <p>Add loans manually to get a combined view of what you owe.</p>
-          </div>
-          <!-- Empty-state message displayed when there are no loans. -->
-        </div>
-      </section>
-
-      <!-- PAYMENT PLANNER SCREEN -->
-      <section class="view" id="view-planner">
-        <div class="section-heading page-intro">
-          <div>
-            <p class="eyebrow">PLAN AHEAD</p>
-            <h2>Payment planner</h2>
-            <p class="muted">
-              A monthly snapshot of upcoming payments from your saved loans.
-            </p>
-          </div>
-        </div>
-
-        <div class="planner-summary">
-          <div>
-            <span class="muted">Planned for this month</span>
-            <strong id="plannerTotal">KSh 0</strong>
-            <p>Based on each loan's amount due this month.</p>
-          </div>
-
-          <div class="planner-illustration">◷</div>
-        </div>
-        <!-- Summary of planned repayments. -->
-
-        <div class="panel">
-          <div class="panel-heading">
-            <div>
-              <p class="eyebrow">UPCOMING</p>
-              <h3>Due dates</h3>
-            </div>
-
-            <span class="tiny-badge">MANUAL TRACKING</span>
-          </div>
-
-          <div id="paymentList" class="payment-list"></div>
-          <!-- JavaScript inserts the upcoming payments here. -->
-
-          <div id="emptyPayments" class="empty-state">
-            <span class="empty-icon">◷</span>
-            <strong>No payments to plan yet</strong>
-            <p>Add a loan and its next due date to see it here.</p>
-
-            <button class="btn btn-dark" data-go="loans">
-              Add a loan
-            </button>
-          </div>
-        </div>
-
-        <div class="notice">
-          <span>ⓘ</span>
-          <p>
-            <b>Reminder:</b> this class-demo version does not send push
-            notifications or contact lenders. Use it to organize dates and plans.
-          </p>
-        </div>
-      </section>
-
-      <!-- AFFORDABILITY CHECKER SCREEN -->
-      <section class="view" id="view-affordability">
-        <div class="section-heading page-intro">
-          <div>
-            <p class="eyebrow">PAUSE BEFORE YOU BORROW</p>
-            <h2>Can I afford it?</h2>
-            <p class="muted">
-              Estimate how a potential repayment could affect your monthly budget.
-            </p>
-          </div>
-        </div>
-
-        <div class="content-grid afford-grid">
-          <article class="panel">
-            <div class="panel-heading">
-              <div>
-                <p class="eyebrow">TRY A SCENARIO</p>
-                <h3>New loan check</h3>
+            <div class="col-md-6 col-xl-3">
+              <div class="card p-3 h-100">
+                <h3 class="h6">Outstanding Loans</h3>
+                <p id="totalOutstanding">KSh 0</p>
               </div>
-
-              <span class="stat-icon green">⌁</span>
             </div>
 
-            <form id="affordForm" class="stack-form">
-              <!-- Collects the figures needed for the affordability estimate. -->
-
-              <label>
-                Monthly income (KSh)
-                <input id="incomeInput" type="number" min="1"
-                  step="0.01" placeholder="e.g. 30000" required>
-              </label>
-
-              <label>
-                Essential monthly expenses (KSh)
-                <input id="expensesInput" type="number" min="0"
-                  step="0.01" placeholder="e.g. 15000" required>
-              </label>
-
-              <label>
-                Current monthly loan payments (KSh)
-                <input id="currentPayments" type="number" min="0"
-                  step="0.01" placeholder="Auto-filled from loans">
-              </label>
-
-              <div class="divider"></div>
-
-              <label>
-                Proposed new monthly repayment (KSh)
-                <input id="newPayment" type="number" min="0"
-                  step="0.01" placeholder="e.g. 2500" required>
-              </label>
-
-              <button class="btn btn-dark full" type="submit">
-                Check affordability <span>→</span>
-              </button>
-              <!-- JavaScript calculates the budget estimate on submission. -->
-            </form>
-          </article>
-
-          <article class="panel result-panel" id="affordResult">
-            <!-- JavaScript replaces or updates this panel with the result. -->
-
-            <div class="result-symbol">↗</div>
-            <p class="eyebrow">YOUR ESTIMATE</p>
-
-            <h3>Know the impact before you commit.</h3>
-
-            <p class="muted">
-              Enter your income, essential expenses and proposed repayment
-              to see an illustrative result.
-            </p>
-
-            <div class="result-placeholder">
-              <span>◎</span>
-              <p>Your result will appear here.</p>
+            <div class="col-md-6 col-xl-3">
+              <div class="card p-3 h-100">
+                <h3 class="h6">Due This Month</h3>
+                <p id="totalDue">KSh 0</p>
+              </div>
             </div>
-          </article>
-        </div>
 
-        <div class="notice">
-          <span>ⓘ</span>
-          <p>
-            This check is a simple budgeting guide, not a loan approval
-            decision. Real affordability depends on fees, interest,
-            irregular income, emergencies and your actual loan terms.
+            <div class="col-md-6 col-xl-3">
+              <div class="card p-3 h-100">
+                <h3 class="h6">Monthly Income</h3>
+                <p id="monthlyIncome">KSh 0</p>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-xl-3">
+              <div class="card p-3 h-100">
+                <h3 class="h6">Repayment Pressure</h3>
+                <p id="pressureValue">0%</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- Loan list -->
+        <section class="card p-4 mb-4">
+          <h2 class="h4">My Loans</h2>
+          <div id="dashboardLoans"></div>
+
+          <p id="emptyDashboard">
+            No loans added yet. Add your first loan to get started.
           </p>
-        </div>
-      </section>
+        </section>
 
-      <!-- SETTINGS SCREEN -->
-      <section class="view" id="view-settings">
-        <div class="section-heading page-intro">
-          <div>
-            <p class="eyebrow">MAKE IT YOURS</p>
-            <h2>Settings</h2>
-            <p class="muted">
-              Set the income used for your dashboard and affordability guidance.
-            </p>
-          </div>
-        </div>
+        <footer class="text-secondary small">
+          PayPath is a financial planning demo, not a lender.
+        </footer>
 
-        <div class="panel settings-panel">
-          <div>
-            <p class="eyebrow">MONTHLY BUDGET</p>
-            <h3>Your income</h3>
-            <p class="muted">
-              This stays in this browser for the class demo.
-            </p>
-          </div>
-
-          <form id="incomeForm" class="income-form">
-            <!-- Form for saving the user's monthly income. -->
-
-            <label for="settingsIncome">Monthly income (KSh)</label>
-            <!-- for="settingsIncome" associates this label with the input ID. -->
-
-            <div class="inline-input">
-              <input id="settingsIncome" type="number" min="0"
-                step="0.01" placeholder="e.g. 30000" required>
-
-              <button class="btn btn-lime" type="submit">Save income</button>
-            </div>
-          </form>
-
-          <div class="divider"></div>
-
-          <div class="settings-row">
-            <div>
-              <strong>Demo data</strong>
-              <p class="muted">Clear loans and income saved in this browser.</p>
-            </div>
-
-            <button class="btn btn-danger-outline" id="clearData">
-              Clear demo data
-            </button>
-            <!-- JavaScript can attach a click handler to clear saved data. -->
-          </div>
-        </div>
-
-        <div class="notice">
-          <span>♧</span>
-          <p>
-            <b>Privacy by design:</b> this prototype does not request ID
-            numbers, bank credentials, M-Pesa PINs or access to another
-            person's loan records.
-          </p>
-        </div>
-      </section>
-    </main>
+      </main>
+    </div>
   </div>
 
-  <!-- TOAST NOTIFICATION -->
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <!-- JavaScript can display short messages here, such as "Loan saved".
-       role and aria-live help assistive technologies announce updates. -->
+  <!-- Bootstrap JavaScript -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+  </script>
 
-  <!-- JAVASCRIPT ENTRY POINT -->
+  <!-- Our application JavaScript -->
   <script type="module" src="js/app.js"></script>
-  <!-- Loads the main JavaScript file as an ES module.
-       The module can import reusable functions from other JS files. -->
 </body>
 </html>
