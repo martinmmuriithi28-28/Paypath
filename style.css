@@ -1,9 +1,14 @@
 /* 1. Basic page styling */
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     background-color: #f4f6f8;
     color: #202938;
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
 }
 
 /* 2. Sidebar */
@@ -11,20 +16,33 @@ body {
     background-color: #101b2d;
     color: white;
     min-height: 100vh;
-    padding: 25px 15px;
 }
 
-.brand {
-    color: #d7ff00;
+.sidebar h2 {
+    color: white;
     font-size: 26px;
     font-weight: bold;
-    margin-bottom: 30px;
 }
 
-.sidebar .nav-link {
+.sidebar h2 span {
+    color: #d7ff00;
+}
+
+.sidebar p {
     color: #d5dbe5;
-    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Sidebar navigation buttons */
+.sidebar .nav-link {
+    width: 100%;
+    text-align: left;
+    color: #d5dbe5;
+    background: transparent;
+    border: none;
     border-radius: 6px;
+    padding: 10px;
+    margin-bottom: 8px;
 }
 
 .sidebar .nav-link:hover,
@@ -33,9 +51,9 @@ body {
     color: #101b2d;
 }
 
-/* 3. Main content */
+/* 3. Main content and headings */
 main {
-    padding: 30px;
+    min-width: 0;
 }
 
 h1, h2, h3 {
@@ -55,54 +73,46 @@ h2 {
 .welcome-banner {
     background-color: #101b2d;
     color: white;
-    padding: 25px;
-    border-radius: 12px;
-    margin-bottom: 25px;
 }
 
 .welcome-banner h2 {
     color: #d7ff00;
+    font-size: 25px;
 }
 
 .welcome-banner p {
-    margin-bottom: 0;
+    color: white;
+    margin-bottom: 16px;
 }
 
-/* 5. Summary cards */
-.stat-card {
+/* 5. Summary cards and loan list cards */
+main .card {
     background-color: white;
-    padding: 20px;
-    border-radius: 10px;
     border: 1px solid #e2e6eb;
+    border-radius: 10px;
     height: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
-.stat-card h3 {
+main .card h3 {
     font-size: 15px;
     color: #687386;
 }
 
-.stat-card p {
-    font-size: 25px;
+main .card p {
+    font-size: 23px;
     font-weight: bold;
     margin-bottom: 0;
 }
 
-/* 6. Content panels */
-.panel {
-    background-color: white;
-    padding: 22px;
-    border-radius: 10px;
-    border: 1px solid #e2e6eb;
-    margin-bottom: 20px;
-}
-
-/* 7. Buttons */
+/* 6. Lime-green buttons */
 .btn-lime {
     background-color: #d7ff00;
     color: #101b2d;
     border: none;
     font-weight: bold;
+    padding: 10px 18px;
 }
 
 .btn-lime:hover {
@@ -110,20 +120,11 @@ h2 {
     color: #101b2d;
 }
 
-.btn-dark {
-    background-color: #101b2d;
-    color: white;
-    border: none;
-}
-
-.btn-dark:hover {
-    background-color: #253650;
-    color: white;
-}
-
-/* 8. Forms */
+/* 7. Form fields */
 .form-control,
 .form-select {
+    width: 100%;
+    max-width: 100%;
     padding: 10px;
     border-radius: 6px;
     border: 1px solid #ced4da;
@@ -135,27 +136,69 @@ h2 {
     box-shadow: 0 0 0 3px rgba(215, 255, 0, 0.2);
 }
 
-/* 9. Tables */
+/* 8. Tables */
 .table {
     vertical-align: middle;
 }
 
-.table thead th {
-    background-color: #f4f6f8;
-    color: #465166;
+/* Allow wide tables to scroll on small screens.
+   Put the table inside a div with class="table-responsive". */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
 }
 
-/* 10. Mobile screens */
-@media (max-width: 768px) {
+/* 9. Tablet layout */
+@media (max-width: 991px) {
     .sidebar {
         min-height: auto;
     }
 
+    /* Display navigation links in rows on smaller screens */
+    .sidebar .nav {
+        flex-direction: row !important;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .sidebar .nav-link {
+        width: auto;
+        margin-bottom: 0;
+    }
+}
+
+/* 10. Mobile phone layout */
+@media (max-width: 575px) {
     main {
-        padding: 18px;
+        padding: 14px !important;
+    }
+
+    main header p {
+        font-size: 12px;
     }
 
     h1 {
         font-size: 24px;
+    }
+
+    .welcome-banner {
+        padding: 18px !important;
+    }
+
+    .welcome-banner h2 {
+        font-size: 21px;
+    }
+
+    main .card {
+        padding: 16px !important;
+    }
+
+    main .card p {
+        font-size: 20px;
+    }
+
+    button,
+    .btn {
+        max-width: 100%;
     }
 }
