@@ -260,7 +260,7 @@ function loadLoans() {
     }
 }
 
-// Send a new loan in  browser storage 
+// Save a new loan in  browser storage 
 
 function addLoan(event) {
     event.preventDefault();
@@ -286,10 +286,11 @@ function addLoan(event) {
     }
 
     try {
-          const savedLoans = getLoansFromStorage();
-   savedLoans.push(loan);
+    const savedLoans = getLoansFromStorage();
+    savedLoans.push(loan);
 
     saveLoansToStorage(savedLoans);
+    
 
         getElement("loanForm").reset();
 
@@ -310,13 +311,11 @@ function deleteLoan(id) {
     }
 
     try {
-        const savedLoans = getLoansFromStorage();
+        const updatedLoans = savedLoans.filter(
+            loan => String(loan.id) !== String(id)
+        );
 
-const updatedLoans = savedLoans.filter(
-    loan => String(loan.id) !== String(id)
-);
-
-if (updatedLoans.length === savedLoans.length) { {
+        if (updatedLoans.length === savedLoans.length) {
             showMessage("Loan not found.", "warning");
             return;
         }
