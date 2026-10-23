@@ -17,15 +17,24 @@ function saveLoansToStorage(loans) {
     localStorage.setItem(STORAGE_KEY, loansText);
 }
 
-const API_URL = "/api/loans";
-
-// Store loans retrieved from the API.
+// Store loans loaded from browser storage
 
 let loans = [];
 
+
 // Keep monthly income in this browser for now.
 
-let monthlyIncome = Number(localStorage.getItem("paypathIncome")) || 30000;
+const savedIncome = localStorage.getItem("paypathIncome");
+
+let monthlyIncome = 30000;
+
+if (savedIncome !== null) {
+    const incomeValue = Number(savedIncome);
+
+    if (Number.isFinite(incomeValue) && incomeValue > 0) {
+        monthlyIncome = incomeValue;
+    }
+}
 
 // Find an element by its ID.
 
@@ -233,7 +242,7 @@ function displayAllLoans() {
     });
 }
 
-// Load loans from the backend API.
+// Load loans from  browser storage
 
 function loadLoans() {
     try {
@@ -251,7 +260,7 @@ function loadLoans() {
     }
 }
 
-// Send a new loan to the API.
+// Send a new loan in  browser storage 
 
 function addLoan(event) {
     event.preventDefault();
@@ -277,11 +286,10 @@ function addLoan(event) {
     }
 
     try {
-        const loans = getLoansFromStorage();
+          const savedLoans = getLoansFromStorage();
+   savedLoans.push(loan);
 
-        loans.push(loan);
-
-        saveLoansToStorage(loans);
+    saveLoansToStorage(savedLoans);
 
         getElement("loanForm").reset();
 
@@ -294,7 +302,7 @@ function addLoan(event) {
     }
 }
 
-// Delete a loan using its API ID.
+// Delete a loan using its ID from the browser storage.
 
 function deleteLoan(id) {
     if (!confirm("Are you sure you want to delete this loan?")) {
@@ -302,13 +310,13 @@ function deleteLoan(id) {
     }
 
     try {
-        const loans = getLoansFromStorage();
+        const savedLoans = getLoansFromStorage();
 
-        const updatedLoans = loans.filter(
-            loan => String(loan.id) !== String(id)
-        );
+const updatedLoans = savedLoans.filter(
+    loan => String(loan.id) !== String(id)
+);
 
-        if (updatedLoans.length === loans.length) {
+if (updatedLoans.length === savedLoans.length) { {
             showMessage("Loan not found.", "warning");
             return;
         }
