@@ -3,11 +3,18 @@
 const STORAGE_KEY = "paypath_loans";
 
 function getLoansFromStorage() {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    const savedLoans = localStorage.getItem(STORAGE_KEY);
+
+    if (savedLoans === null) {
+        return [];
+    }
+
+    return JSON.parse(savedLoans);
 }
 
 function saveLoansToStorage(loans) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(loans));
+    const loansText = JSON.stringify(loans);
+    localStorage.setItem(STORAGE_KEY, loansText);
 }
 
 const API_URL = "/api/loans";
