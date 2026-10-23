@@ -286,12 +286,11 @@ function addLoan(event) {
     }
 
     try {
-    const savedLoans = getLoansFromStorage();
+          const savedLoans = getLoansFromStorage();
     savedLoans.push(loan);
 
     saveLoansToStorage(savedLoans);
     
-
         getElement("loanForm").reset();
 
         loadLoans();
@@ -311,6 +310,8 @@ function deleteLoan(id) {
     }
 
     try {
+        const savedLoans = getLoansFromStorage();
+
         const updatedLoans = savedLoans.filter(
             loan => String(loan.id) !== String(id)
         );
